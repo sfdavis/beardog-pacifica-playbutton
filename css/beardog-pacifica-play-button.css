@@ -1,0 +1,57 @@
+.pacifica_play_buttons {
+	all: initial;
+}
+
+.play_button { 
+	cursor:pointer;
+	height:30px;
+	width:120px;
+	background-image: url('/wp-content/plugins/beardog-pacifica-playbutton/images/play_button_desktop.png');
+	background-repeat: no-repeat;
+	background-position: center;
+  background-size: contain;
+  border:none;
+  border-radius:15px;
+}   
+.play_button:link,.play_button:visited {
+	background-image: url('/wp-content/plugins/beardog-pacifica-playbutton/images/play_button_desktop.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}   
+.play_button:hover {
+	background-image: url('/wp-content/plugins/beardog-pacifica-playbutton/images/play_button_over_desktop.png');
+}
+.play_button:active {
+	background-image: url('/wp-content/plugins/beardog-pacifica-playbutton/images/play_button_down_desktop.png');
+}
+.canvas_class
+{
+	border:1px solid #838383;
+	background-color:#888888;
+}
+.player_table_playing {
+	background-color:#000;
+	vertical-align: top;
+	color:#ffffff;
+	width:330px;
+}
+.player_table
+{
+	background-color:#000000;
+	vertical-align: top;
+	color:#ffffff;
+	width:330px;
+}
+.player_table_playing td {
+  padding:10px 0;
+  text-align:center;
+  }
+.cfdiv {
+	position: relative;
+	top: -10px;
+	left: 10px;
+	background-color: #ffff88;
+	outline: #000000 solid 1px;
+}
+
+
