@@ -1,11 +1,20 @@
 <?php
+/*
 include( plugin_dir_path( __FILE__ ) . '/confessor_api.php');
+*/
+function archive_get_filnam($idkey,$num = 0)
+{
+	$buf = file_get_contents("https://archive.kkfi.org/_sh_do_api.php?req=$idkey&num=$num");
+	$ary = unserialize(base64_decode($buf));
+	return($ary);
+}
+
 
 /**
  * Plugin Name: BearDog.com Pacifica Play Button Plugin
  * Plugin URI:  https://github.com/sfdavis/beardog-pacifica-playbutton
  * Description: Pull and display a playbutton
- * Version:     0.0.2
+ * Version:     0.0.1
  * Author:      Steven F. Davis
  * Author URI:  https://www.linkedin.com/in/stevenfdavis/
  * License:     GPL3
@@ -60,7 +69,7 @@ register_uninstall_hook(__FILE__, 'beardog_pacifica_uninstall');
 function html5_button($id,$file_link,$private_flag,$class)
 {   
     $imgdir =  plugins_url("images", __FILE__);
-	return('<button id="' . $id . '" class="' . $class . '" mp3="' . $file_link . '" imgurl="' . $imgdir . '" private="' . $private_flag . '" onclick="PacificaPlayer.add_html5(this);" ></button> ');
+	return('<button id="' . $id . '" class="' . $class . '" mp3="' . $file_link . '" imgurl="' . $imgdir . '" private="' . $private_flag . '" onclick="add_html5(this);" ></button> ');
 }   
 
 
@@ -91,14 +100,14 @@ function getshows($showdata, $idx) {
 
 /** SHORTCODES **/
 /**
- * Setup the Pacifica shortcodes 
+ * Setup the Spinitron shortcodes 
  *  
- * @since 0.0.3
+ * @since 0.0.1
  */
 function beardog_pacifica_shortcodes_init() {
 
-	/*if(!defined("tz"))
-		define("tz","America/Chicago");*/
+	if(!defined("tz"))
+		define("tz","America/Chicago");
 
 	/** REMOVING UNSUPPORTED TIMEZONE FUNCTION date_default_timezone_set(tz); **/
 
@@ -115,28 +124,16 @@ function beardog_pacifica_shortcodes_init() {
 
 		# get  date from shortcode
 		$showtime = new DateTime($atts['show_time']);
-		$ststr = print_r($showtime, TRUE);
-		$now =(new DateTime(current_time('Y-m-d H:i:s')));
-		$nowstr = print_r($now, TRUE);
-
+		$now =(new DateTime(date('Y-m-d H:i:s')));
 		# test to see if it is week 1 or week 2
-        $timediff = $showtime->diff($now,FALSE);
-
-		$minutesdiff = $timediff->days * 24 * 60;
-        $minutesdiff += $timediff->h * 60;
-        $minutesdiff += $timediff->i;
-		if ( $timediff->invert == 1 ) { $minutesdiff = -$minutesdiff; }
-
-		// Add +5 hours because flywheel seems to be forcing UTC
-		$minutesdiff =  $minutesdiff + 300;
-
+		$daysdiff = $now->diff($showtime)->days;
 		# set variable for play button index
 		$playbutton_idx = -1;
-		if ( $minutesdiff > 0 and $minutesdiff <= 7*60*24 ) 
+		if ( $daysdiff <= 7 ) 
 		{
 			$playbutton_idx = 0;
 		}
-		elseif ( $minutesdiff > 0 and  $minutesdiff <= 14*60*24) 
+		elseif ( $daysdiff <= 14 ) 
 		{			
 			$playbutton_idx = 1;
 		}
@@ -154,11 +151,7 @@ function beardog_pacifica_shortcodes_init() {
 		<script type="text/javascript">
 		var idkey = '$id';
 		var imgurl = '$imgdir';
-		/*
-		var showtime = $ststr;
-		var now = $nowstr;
-		*/
-		var minutesdiff = '$minutesdiff';
+		var daysdiff = '$daysdiff';
 		var mp3_flag = '';
 		var init_vol = 0.8;
 		var vol_exp = 2;
@@ -197,4 +190,3 @@ function add_beardog_pacifica_stylesheet_js() {
 	wp_enqueue_script('beardog_pacifica_js', plugins_url('/js/paplayer.js', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'add_beardog_pacifica_stylesheet_js');
-

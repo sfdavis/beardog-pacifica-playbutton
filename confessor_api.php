@@ -107,9 +107,12 @@ function confessor_get_gone_shows()
  * [sh_altid] => dnpm
  * [sh_photo] => democracy_now_24.jpg
  * [sh_djname] => Amy Goodman
- * [sh_facebook] => http://pacificaradioarchives.org
- * [sh_twitter] => http://pacificaradioarchives.org
- * [sh_tumblr] => http://pacificaradioarchives.org
+ * [sh_facebook] => http://pacificaradioarchives.org
+
+ * [sh_twitter] => http://pacificaradioarchives.org
+
+ * [sh_tumblr] => http://pacificaradioarchives.org
+
  * [sh_info] => 16446
  * [sh_shour] => 61200
  * [sh_stime] => 17:00:00
@@ -183,9 +186,12 @@ function confessor_get_current($tim = 0)
  *	[sh_name] => Pat &amp; Rosie&#039;s Night Sounds
  *	[sh_desc] =>
  *	[sh_url] => 
- *  [sh_facebook] => http://pacificaradioarchives.org
- *  [sh_twitter] => http://pacificaradioarchives.org
- *  [sh_tumblr] => http://pacificaradioarchives.org
+ *  [sh_facebook] => http://pacificaradioarchives.org
+
+ *  [sh_twitter] => http://pacificaradioarchives.org
+
+ *  [sh_tumblr] => http://pacificaradioarchives.org
+
  *	[sh_photo] => http://confessor.kpft.org/pix/pat__rosies_night_sounds_71.jpg
  *	[sh_djname] => Pat &amp; Rosie
  *	[sh_email] =>
