@@ -60,7 +60,7 @@ register_uninstall_hook(__FILE__, 'beardog_pacifica_uninstall');
 function html5_button($id,$file_link,$private_flag,$class)
 {   
     $imgdir =  plugins_url("images", __FILE__);
-	return('<button id="' . $id . '" class="' . $class . '" mp3="' . $file_link . '" imgurl="' . $imgdir . '" private="' . $private_flag . '" onclick="add_html5(this);" ></button> ');
+	return('<button id="' . $id . '" class="' . $class . '" mp3="' . $file_link . '" imgurl="' . $imgdir . '" private="' . $private_flag . '" onclick="PacificaPlayer.add_html5(this);" ></button> ');
 }   
 
 
